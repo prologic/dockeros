@@ -19,12 +19,20 @@ then
 
   cp defconfig ${buildroot_dir}/configs/${imagename}_defconfig
   cp kconfig ${buildroot_dir}/configs/${imagename}_kconfig
+  cp -r keys ${buildroot_dir}
+  rm -rf ${buildroot_dir}/system/skeleton
+  cp -r skeleton ${buildroot_dir}/system
+  cp post-build.sh ${buildroot_dir}
   cd ${buildroot_dir} && make ${imagename}_defconfig && make
   cd ${cwd}
 else
   # Probably just doing a rebuild
   cp defconfig ${buildroot_dir}/configs/${imagename}_defconfig
   cp kconfig ${buildroot_dir}/configs/${imagename}_kconfig
+  cp -r keys ${buildroot_dir}
+  rm -rf ${buildroot_dir}/system/skeleton
+  cp -r skeleton ${buildroot_dir}/system
+  cp post-build.sh ${buildroot_dir}
   cd ${buildroot_dir}
   make ${imagename}_defconfig && make
   cd ${cdir}
